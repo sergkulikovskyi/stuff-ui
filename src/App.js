@@ -1,10 +1,16 @@
 import React from 'react';
 import './App.scss';
-import STButton from './ui/core/button'
-
+import STButton from './ui/core/button';
+import STSwitch from './ui/core/switch';
 function App() {
   return (
-      <STButton/>
+    <div>
+      <STButton>Button</STButton>
+      <STButton type="toggle">Button</STButton>
+      <STSwitch />
+      <STSwitch disabled label="disabled" />
+      <STSwitch label="text" />
+    </div>
   );
 }
 
