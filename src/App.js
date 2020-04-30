@@ -7,9 +7,9 @@ function App() {
     <div>
       <STButton>Button</STButton>
       <STButton type="toggle">Button</STButton>
-      <STSwitch />
-      <STSwitch disabled label="disabled" />
-      <STSwitch label="text" />
+      <STSwitch checked={false} />
+      <STSwitch disabled label="disabled" checked={false} />
+      <STSwitch label="text" checked={true} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
@@ -92,19 +92,24 @@ const SimpleFormControlLabel = withStyles((theme) => ({
   );
 });
 
-const STSwitch = (props) => {
-  const [checked, setChecked] = useState(props.checked);
-  const handleChange = () => {
-    setChecked(!checked);
+const STSwitch = ({ checked, label, onChange = () => {}, disabled }) => {
+  const [stateChecked, setChecked] = useState(false);
+  useEffect(() => {
+    setChecked(checked);
+  }, [checked]);
+
+  const handleChange = (e) => {
+    setChecked(!stateChecked);
+    onChange(e, !stateChecked);
   };
-  return props.label ? (
+  return label ? (
     <SimpleFormControlLabel
-      control={<SimpleSwitch checked={checked} onChange={handleChange} {...props} />}
-      label={props.label}
-      checked={checked}
+      control={<SimpleSwitch checked={stateChecked} onChange={handleChange} disabled={disabled} />}
+      label={label}
+      checked={stateChecked}
     />
   ) : (
-    <SimpleSwitch checked={checked} onChange={handleChange} {...props} />
+    <SimpleSwitch checked={stateChecked} onChange={handleChange} disabled={disabled} />
   );
 };
 

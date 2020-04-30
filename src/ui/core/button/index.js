@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import './style.scss';
@@ -56,17 +56,35 @@ const STSelectableButton = withStyles((propsAll) => {
         backgroundColor: '#fff',
       },
     },
+    selected: {
+      '&$selected': {
+        boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.05)',
+        color: COLORS.TURQUOISE,
+        backgroundColor: '#fff',
+        '&:hover': {
+          backgroundColor: '#fff',
+        },
+      },
+    },
   };
-})(ToggleButton);
-
-const selectedStyle = {
-  boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.05)',
-  color: COLORS.TURQUOISE,
-  backgroundColor: '#fff',
-};
+})(({ classes, checked, ...props }) => {
+  return (
+    <ToggleButton
+      classes={{
+        root: classes.root,
+        selected: classes.selected,
+      }}
+      {...props}
+    />
+  );
+});
 
 const STButton = ({ color, icon, type, value = 'check', selected = false, disabled, onClick, children }) => {
-  const [stateSelected, setSelected] = useState(selected);
+  const [stateSelected, setSelected] = useState(false);
+  useEffect(() => {
+    setSelected(selected);
+  }, [selected]);
+
   const changeSelected = () => {
     setSelected(!stateSelected);
   };
@@ -75,11 +93,7 @@ const STButton = ({ color, icon, type, value = 'check', selected = false, disabl
     <>
       {!icon ? (
         isEqual('toggle', type) ? (
-          <STSelectableButton
-            onChange={changeSelected}
-            value={value}
-            selected={stateSelected}
-            style={selected ? selectedStyle : {}}>
+          <STSelectableButton onChange={changeSelected} value={value} selected={stateSelected}>
             {children}
           </STSelectableButton>
         ) : !color || isEqual('primary', color) ? (
