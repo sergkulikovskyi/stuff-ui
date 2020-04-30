@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import ToggleButton from '@material-ui/lab/ToggleButton';
-import './style.scss';
+import IconButton from '@material-ui/core/IconButton';
 import { isEqual } from 'lodash';
-import { withStyles } from '@material-ui/core/styles';
-import { COLORS } from '../../STTheme';
+import { withStyles, ThemeProvider } from '@material-ui/core/styles';
+import STTheme, { COLORS, CONSTANTS } from '../../STTheme';
 
 const STPrimaryButton = withStyles((theme) => ({
   root: {
     color: COLORS.WHITE,
-    paddingRight: '20px',
-    paddingLeft: '20px',
+    paddingRight: CONSTANTS.BUTTON_PADDING,
+    paddingLeft: CONSTANTS.BUTTON_PADDING,
     backgroundColor: COLORS.TURQUOISE,
     '&:hover': {
       backgroundColor: COLORS.TURQUOISE_HOVERED,
@@ -25,17 +25,17 @@ const STPrimaryButton = withStyles((theme) => ({
 const STSecondaryButton = withStyles((theme) => ({
   root: {
     color: COLORS.TURQUOISE,
-    border: 'solid 1px #999999',
-    paddingRight: '20px',
-    paddingLeft: '20px',
-    backgroundColor: '#f7f7f7',
+    border: `solid 1px ${COLORS.GRAY}`,
+    paddingRight: CONSTANTS.BUTTON_PADDING,
+    paddingLeft: CONSTANTS.BUTTON_PADDING,
+    backgroundColor: COLORS.GRAY3,
     '&:hover': {
-      border: 'solid 1px #3ebfcf',
-      color: '#3ebfcf',
-      backgroundColor: '#f7f7f7',
+      border: `solid 1px ${COLORS.TURQUOISE}`,
+      color: COLORS.TURQUOISE,
+      backgroundColor: COLORS.GRAY3,
     },
     '&:disabled': {
-      backgroundColor: '#f7f7f7',
+      backgroundColor: COLORS.GRAY3,
       border: 'solid 1px rgba(195, 195, 195, 0.4)',
       color: 'rgba(195, 195, 195, 0.4)',
     },
@@ -43,26 +43,27 @@ const STSecondaryButton = withStyles((theme) => ({
 }))(Button);
 
 //selectable
-const STSelectableButton = withStyles((propsAll) => {
+const STSelectableButton = withStyles((theme) => {
+  console.log('theme', theme);
   return {
     root: {
       color: COLORS.GRAY,
-      paddingRight: '20px',
-      paddingLeft: '20px',
-      backgroundColor: '#fff',
+      paddingRight: CONSTANTS.BUTTON_PADDING,
+      paddingLeft: CONSTANTS.BUTTON_PADDING,
+      backgroundColor: COLORS.WHITE,
       border: 'none',
       '&:hover': {
         color: COLORS.TURQUOISE,
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.WHITE,
       },
     },
     selected: {
       '&$selected': {
         boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.05)',
         color: COLORS.TURQUOISE,
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.WHITE,
         '&:hover': {
-          backgroundColor: '#fff',
+          backgroundColor: COLORS.WHITE,
         },
       },
     },
@@ -79,7 +80,54 @@ const STSelectableButton = withStyles((propsAll) => {
   );
 });
 
-const STButton = ({ color, icon, type, value = 'check', selected = false, disabled, onClick, children }) => {
+//icon
+
+const SimpleIconButton = withStyles((theme) => ({
+  root: {
+    color: COLORS.GRAY,
+    '&:hover': {
+      color: COLORS.TURQUOISE,
+      background: 'transparent',
+    },
+  },
+}))(({ classes, selected, ...props }) => {
+  return (
+    <IconButton
+      classes={{
+        root: classes.root,
+        disabled: classes.disabled,
+      }}
+      {...props}
+    />
+  );
+});
+
+// text button
+const TextButton = withStyles((theme) => ({
+  root: {
+    color: COLORS.GRAY,
+    background: 'transparent',
+    boxShadow: 'none',
+    textTransform: 'inherit',
+    '&:hover': {
+      color: COLORS.TURQUOISE,
+      background: 'transparent',
+      boxShadow: 'none',
+    },
+  },
+}))(({ classes, selected, ...props }) => {
+  return (
+    <Button
+      classes={{
+        root: classes.root,
+        disabled: classes.disabled,
+      }}
+      {...props}
+    />
+  );
+});
+
+const STButton = ({ color, text, icon, type, value = 'check', selected = false, disabled, onClick, children }) => {
   const [stateSelected, setSelected] = useState(false);
   useEffect(() => {
     setSelected(selected);
@@ -90,10 +138,10 @@ const STButton = ({ color, icon, type, value = 'check', selected = false, disabl
   };
 
   return (
-    <>
+    <ThemeProvider theme={STTheme}>
       {!icon ? (
         isEqual('toggle', type) ? (
-          <STSelectableButton onChange={changeSelected} value={value} selected={stateSelected}>
+          <STSelectableButton variant="button" onChange={changeSelected} value={value} selected={stateSelected}>
             {children}
           </STSelectableButton>
         ) : !color || isEqual('primary', color) ? (
@@ -105,10 +153,14 @@ const STButton = ({ color, icon, type, value = 'check', selected = false, disabl
             {children}
           </STSecondaryButton>
         )
+      ) : icon && text ? (
+        <TextButton variant="contained" color="secondary" startIcon={icon} onClick={onClick}>
+          {text}
+        </TextButton>
       ) : (
-        <div>TODO add buttons with icons</div>
+        <SimpleIconButton onClick={onClick}>{icon}</SimpleIconButton>
       )}
-    </>
+    </ThemeProvider>
   );
 };
 

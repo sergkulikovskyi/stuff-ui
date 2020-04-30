@@ -22,10 +22,6 @@ const SimpleSwitch = withStyles((theme) => ({
         border: 'none',
       },
     },
-    '&$focusVisible $thumb': {
-      color: '#52d869',
-      border: '6px solid #fff',
-    },
   },
   thumb: {
     width: 23,
@@ -43,7 +39,7 @@ const SimpleSwitch = withStyles((theme) => ({
   },
   disabled: {
     '& $thumb': {
-      color: '#fff',
+      color: COLORS.WHITE,
     },
     '&$switchBase + $track': {
       backgroundColor: COLORS.GRAY3,
@@ -86,7 +82,7 @@ const SimpleFormControlLabel = withStyles((theme) => ({
         label: classes.label,
         disabled: classes.disabled,
       }}
-      style={{ color: checked ? '#000' : COLORS.GRAY2 }}
+      style={{ color: checked ? COLORS.BLACK : COLORS.GRAY2 }}
       {...props}
     />
   );

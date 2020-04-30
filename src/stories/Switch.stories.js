@@ -8,7 +8,7 @@ export default {
 };
 
 export const OnSwithStorybook = () => <STSwitch checked={true} onChange={action('changed')} />;
-export const OfSwithStorybook = () => <STSwitch checked={false} onChange={action('changed')} />;
+export const OffSwithStorybook = () => <STSwitch checked={false} onChange={action('changed')} />;
 export const DisabledSwithStorybook = () => <STSwitch disabled checked={false} onChange={action('changed')} />;
 
 export const WithTextOnSwithStorybook = () => (
@@ -21,7 +21,7 @@ export const WithTextOffSwithStorybook = () => (
 OnSwithStorybook.story = {
   name: 'On toggle',
 };
-OfSwithStorybook.story = {
+OffSwithStorybook.story = {
   name: 'Off toggle',
 };
 DisabledSwithStorybook.story = {
