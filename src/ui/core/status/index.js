@@ -90,7 +90,6 @@ const STStatus = ({ status = {}, onChange = () => {}, label, ...rest }) => {
   return (
     <>
       <Button
-        onClick={handleClick}
         onMouseOver={handleClick}
         className={classes.select}
         style={{ backgroundColor: stateStatus.value === 0 ? COLORS.TURQUOISE : COLORS.RED }}>
@@ -105,7 +104,7 @@ const STStatus = ({ status = {}, onChange = () => {}, label, ...rest }) => {
         className={classes.paper}
         style={{ ...MenuProps }}
         MenuListProps={{
-          onMouseLeave: handleClose,
+          //onMouseLeave: handleClose,
           classes: { root: classes.list },
         }}
         getContentAnchorEl={null}>

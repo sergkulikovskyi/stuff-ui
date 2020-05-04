@@ -44,7 +44,6 @@ const STSecondaryButton = withStyles((theme) => ({
 
 //selectable
 const STSelectableButton = withStyles((theme) => {
-  console.log('theme', theme);
   return {
     root: {
       color: COLORS.GRAY,
