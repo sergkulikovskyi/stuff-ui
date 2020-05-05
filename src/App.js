@@ -35,6 +35,16 @@ function App() {
         text="Add parameter"
       />
       <STStatus />
+      <STDropdown options={[{ label: 'Default', value: 0 }]} />
+      <STDropdown options={[{ label: 'Add option', value: 0 }]} selected={{ label: 'Selected', value: 1 }} />
+      <STDropdown
+        options={[
+          { label: 'Add option', value: 0 },
+          { label: 'I’m the longest term in the options', value: 1 },
+          { label: 'Option 2', value: 2 },
+        ]}
+      />
+
       <STDropdown
         options={[
           { label: 'Add option', value: 0 },
@@ -49,65 +59,6 @@ function App() {
           },
         ]}
       />
-      <div style={{ marginTop: '40px' }}>
-        <STDropdown
-          options={[
-            { label: 'Option 1', value: 0 },
-            { label: 'Option 2', value: 1 },
-            { label: 'Option 3', value: 2 },
-            { label: 'I’m the longest term in the options', value: 3 },
-          ]}
-        />
-      </div>
-      <div style={{ marginTop: '40px' }}>
-        <STDropdown
-          options={[
-            { label: 'Add option', value: 0 },
-            {
-              label: 'Remove option',
-              value: [
-                { label: 'Option 1', value: 1 },
-                { label: 'Option 2', value: 2 },
-                { label: 'Option 3', value: 3 },
-              ],
-            },
-            {
-              label: 'Add parameter',
-              suggest: true,
-              value: [
-                { label: 'Option 4', value: 4 },
-                { label: 'Option 5', value: 5 },
-                { label: 'Option 6', value: 6 },
-              ],
-            },
-          ]}
-        />
-      </div>
-
-      <div style={{ marginTop: '700px' }}>
-        <STDropdown
-          options={[
-            { label: 'Add option', value: 0 },
-            {
-              label: 'Remove option',
-              value: [
-                { label: 'Option 1', value: 1 },
-                { label: 'Option 2', value: 2 },
-                { label: 'Option 3', value: 3 },
-              ],
-            },
-            {
-              label: 'Add parameter',
-              suggest: true,
-              value: [
-                { label: 'Option 4', value: 4 },
-                { label: 'Option 5', value: 5 },
-                { label: 'Option 6', value: 6 },
-              ],
-            },
-          ]}
-        />
-      </div>
     </div>
   );
 }

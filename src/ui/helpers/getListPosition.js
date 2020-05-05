@@ -12,7 +12,7 @@ const getListPosition = (ref, nested) => {
       const horizontalPos = toLeft ? { right: 0 } : { left: 0 };
       return { ...verticalPos, ...horizontalPos };
     } else {
-      const verticalPos = toTop ? { bottom: '-5px' } : { top: '10px' };
+      const verticalPos = toTop ? { bottom: '-5px' } : { top: '0px' };
       const horisontalPos = toLeft ? { right: 'calc(100% + 2px)' } : { left: 'calc(100% + 2px)' };
       return { ...horisontalPos, ...verticalPos };
     }

@@ -12,6 +12,7 @@ let STTheme = createMuiTheme({
     danger: 'orange',
   },
   typography: {
+    fontFamily: ['Roboto', 'Helvetica', 'Arial'].join(','),
     button: {
       fontSize: 14,
     },
@@ -31,6 +32,7 @@ export const COLORS = {
   GRAY_WITH_OPACITY: 'rgba(153, 153, 153, 0.4)',
   GRAY2: '#c3c3c3',
   GRAY3: '#f7f7f7',
+  GARY4: '#e7e7e7',
   RED: '#eb6464',
 };
 

@@ -67,7 +67,7 @@ const STStatus = ({ status = {}, onChange = () => {}, label, ...rest }) => {
 
   useEffect(() => {
     if (status.label) setStatus(status);
-  }, [status.label]);
+  }, [status]);
 
   function handleClick(event) {
     if (anchorEl !== event.currentTarget) {
