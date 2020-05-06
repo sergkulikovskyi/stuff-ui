@@ -34,6 +34,7 @@ export const COLORS = {
   GRAY3: '#f7f7f7',
   GARY4: '#e7e7e7',
   GRAY5: '#f6f6f6',
+  GRAY6: '#a3a3a3',
   RED: '#eb6464',
 };
 

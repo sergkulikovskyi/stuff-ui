@@ -5,6 +5,7 @@ import STSwitch from './ui/core/switch';
 import STCheckbox from './ui/core/checkbox';
 import STStatus from './ui/core/status';
 import STDropdown from './ui/core/dropdown';
+import ExtractExample from './ui/examples/extract';
 
 import { PopoverExampleSm, PopoverExampleLg, PopoverExampleArrowLeft } from './ui/examples/popover';
 
@@ -67,6 +68,7 @@ function App() {
         <PopoverExampleLg />
         <PopoverExampleArrowLeft />
       </div>
+      <ExtractExample />
     </div>
   );
 }

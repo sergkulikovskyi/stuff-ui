@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import clsx from 'clsx';
-
-import Button from '@material-ui/core/Button';
-import STCheckbox from '../checkbox';
-import Paper from '@material-ui/core/Paper';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
-import { COLORS, CONSTANTS } from '../../STTheme';
+import { COLORS } from '../../STTheme';
 
-const STSimpleButton = withStyles((theme) => ({
-  root: {
-    color: COLORS.BLACK,
-    paddingRight: CONSTANTS.BUTTON_PADDING,
-    paddingLeft: CONSTANTS.BUTTON_PADDING,
-    backgroundColor: COLORS.WHITE,
-    textTransform: 'initial',
-    '&:hover': {
-      backgroundColor: COLORS.WHITE,
-    },
-  },
-}))(Button);
-
-const STPopoverContent = withStyles((theme, other) => {
+const STPopover = withStyles((theme, other) => {
   return {
     paper: {
       fontSize: '14px',
@@ -32,8 +15,6 @@ const STPopoverContent = withStyles((theme, other) => {
       boxSizing: 'border-box',
     },
     triangle: {
-      left: 20,
-      top: -8,
       width: 28,
       height: 28,
       display: 'block',
@@ -57,11 +38,19 @@ const STPopoverContent = withStyles((theme, other) => {
         borderWidth: '0 7px 16px 7px',
       },
     },
-    triangleLeft: {},
-    popover: {},
-    text: {
+    triangleTop: {
+      left: 20,
+      top: -8,
+    },
+    triangleLeft: {
+      top: '20px',
+      left: '-9px',
+      transform: 'rotate(-45deg)',
+    },
+    mainContent: {
       color: COLORS.GRAY,
       fontSize: theme.typography.fontSize,
+      fontFamily: theme.typography.fontFamily,
       margin: 0,
     },
     footer: {
@@ -72,34 +61,15 @@ const STPopoverContent = withStyles((theme, other) => {
       padding: '2px 0px',
     },
   };
-})(({ classes, text, width = 300, update, onChange, arrowPosition, ...props }) => {
-  const footerContnent = update ? (
-    <>
-      <STSimpleButton
-        onClick={() => {
-          onChange(false);
-        }}>
-        No
-      </STSimpleButton>
-      <STSimpleButton
-        onClick={() => {
-          onChange(true);
-        }}>
-        Yes, update it
-      </STSimpleButton>
-    </>
-  ) : (
-    <>
-      <STCheckbox checked={false} label="Don't show again" name="checkbox2" onChange={onChange} />
-      <STSimpleButton
-        onClick={() => {
-          onChange(false);
-        }}>
-        Dismiss
-      </STSimpleButton>
-    </>
-  );
-
+})(({ classes, children, width = 300, footerContent, arrowPosition, paperStyles, ...props }) => {
+  let triangleClass = classes.triangleTop;
+  switch (arrowPosition) {
+    case 'left':
+      triangleClass = classes.triangleLeft;
+      break;
+    default:
+      break;
+  }
   return (
     <div className={classes.popover}>
       <div className={classes.overlay} />
@@ -108,19 +78,15 @@ const STPopoverContent = withStyles((theme, other) => {
         classes={{
           paper: classes.paper,
         }}
-        PaperProps={{ style: { width } }}
+        PaperProps={{ style: { width, ...paperStyles } }}
         {...props}
         disableRestoreFocus>
-        <div className={clsx(classes.triangle, { [classes.triangleLeft]: arrowPosition === 'left' })} />
-        <p className={classes.text}>{text}</p>
-        <div className={classes.footer}>{footerContnent}</div>
+        <div className={clsx(classes.triangle, triangleClass)} />
+        <div className={classes.mainContent}>{children}</div>
+        <div className={classes.footer}>{footerContent}</div>
       </Popover>
     </div>
   );
 });
-
-const STPopover = (props) => {
-  return <STPopoverContent {...props} />;
-};
 
 export default STPopover;

@@ -3,10 +3,16 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
-import STCheckbox from '../core/checkbox';
+import STCheckbox from '../ui/core/checkbox';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { COLORS, CONSTANTS } from '../STTheme';
-import STPopover from '../core/popover';
+import { COLORS, CONSTANTS } from '../ui/STTheme';
+import STPopover from '../ui/core/popover';
+import { action } from '@storybook/addon-actions';
+
+export default {
+  title: 'Stuff Popover',
+  component: STPopover,
+};
 
 export const STInput = withStyles((theme) => ({
   label: {
@@ -184,4 +190,18 @@ export const PopoverExampleArrowLeft = ({ onChange = () => {} }) => {
       </STPopover>
     </div>
   );
+};
+
+export const PopoverStorybook = () => <PopoverExampleSm />;
+export const PopoverLargeStorybook = () => <PopoverExampleLg />;
+export const PopoverArrowLeftStorybook = () => <PopoverExampleArrowLeft />;
+
+PopoverStorybook.story = {
+  name: 'Popover default',
+};
+PopoverLargeStorybook.story = {
+  name: 'Popover with custom width',
+};
+PopoverArrowLeftStorybook.story = {
+  name: 'Popover position to right',
 };
