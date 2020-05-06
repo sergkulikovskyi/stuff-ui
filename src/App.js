@@ -6,6 +6,8 @@ import STCheckbox from './ui/core/checkbox';
 import STStatus from './ui/core/status';
 import STDropdown from './ui/core/dropdown';
 
+import { PopoverExampleSm, PopoverExampleLg, PopoverExampleArrowLeft } from './ui/examples/popover';
+
 function App() {
   return (
     <div>
@@ -37,6 +39,7 @@ function App() {
       <STStatus />
       <STDropdown options={[{ label: 'Default', value: 0 }]} />
       <STDropdown options={[{ label: 'Add option', value: 0 }]} selected={{ label: 'Selected', value: 1 }} />
+
       <STDropdown
         options={[
           { label: 'Add option', value: 0 },
@@ -59,6 +62,11 @@ function App() {
           },
         ]}
       />
+      <div>
+        <PopoverExampleSm />
+        <PopoverExampleLg />
+        <PopoverExampleArrowLeft />
+      </div>
     </div>
   );
 }

@@ -33,6 +33,7 @@ export const COLORS = {
   GRAY2: '#c3c3c3',
   GRAY3: '#f7f7f7',
   GARY4: '#e7e7e7',
+  GRAY5: '#f6f6f6',
   RED: '#eb6464',
 };
 

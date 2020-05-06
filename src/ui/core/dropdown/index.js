@@ -126,6 +126,7 @@ const useStyles = makeStyles((theme) => {
       '& label': {
         fontSize: 14,
         color: COLORS.GRAY2,
+        textShadow: 'none',
       },
       '& label.Mui-focused': {
         color: COLORS.TURQUOISE,
