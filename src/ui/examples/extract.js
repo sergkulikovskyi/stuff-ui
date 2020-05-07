@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { COLORS, CONSTANTS } from '../STTheme';
+import { withStyles } from '@material-ui/core/styles';
 import STExtract from '../core/extract';
 
 const AnchorElement = withStyles((theme) => ({
@@ -64,6 +63,7 @@ const ExtractExample = () => {
         caption="Add to:"
         onClose={handlePopoverClose}
         options={data}
+        onChange={handlePopoverClose}
       />
     </div>
   );

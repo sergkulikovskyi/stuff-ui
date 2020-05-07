@@ -52,6 +52,10 @@ export const PopoverExampleSm = ({ onChange = () => {} }) => {
   const handlePopoverClose = () => {
     setOpen(false);
   };
+  const onChangePopover = (e) => {
+    onChange(e.currentTarget.value);
+    handlePopoverClose();
+  };
   const classes = useStyles();
   return (
     <div className={classes.block}>
@@ -71,16 +75,10 @@ export const PopoverExampleSm = ({ onChange = () => {} }) => {
         width={253}
         footerContent={
           <>
-            <STSimpleButton
-              onClick={() => {
-                onChange(false);
-              }}>
+            <STSimpleButton value={false} onClick={onChangePopover}>
               No
             </STSimpleButton>
-            <STSimpleButton
-              onClick={() => {
-                onChange(true);
-              }}>
+            <STSimpleButton value={true} onClick={onChangePopover}>
               Yes, update it
             </STSimpleButton>
           </>
@@ -102,6 +100,10 @@ export const PopoverExampleLg = ({ onChange = () => {} }) => {
   const handlePopoverClose = () => {
     setOpen(false);
   };
+  const onChangePopover = (e) => {
+    onChange(e.currentTarget.value);
+    handlePopoverClose();
+  };
 
   const classes = useStyles();
   return (
@@ -122,11 +124,14 @@ export const PopoverExampleLg = ({ onChange = () => {} }) => {
         width={350}
         footerContent={
           <>
-            <STCheckbox checked={false} label="Don't show again" name="checkbox2" onChange={onChange} />
-            <STSimpleButton
-              onClick={() => {
-                onChange(false);
-              }}>
+            <STCheckbox
+              checked={false}
+              value={true}
+              label="Don't show again"
+              name="checkbox2"
+              onChange={onChangePopover}
+            />
+            <STSimpleButton value={false} onClick={onChangePopover}>
               Dismiss
             </STSimpleButton>
           </>
@@ -149,6 +154,10 @@ export const PopoverExampleArrowLeft = ({ onChange = () => {} }) => {
   const handlePopoverClose = () => {
     setOpen(false);
   };
+  const onChangePopover = (e) => {
+    onChange(e.currentTarget.value);
+    handlePopoverClose();
+  };
   const classes = useStyles();
   return (
     <div className={classes.block}>
@@ -170,11 +179,14 @@ export const PopoverExampleArrowLeft = ({ onChange = () => {} }) => {
         width={350}
         footerContent={
           <>
-            <STCheckbox checked={false} label="Don't show again" name="checkbox2" onChange={onChange} />
-            <STSimpleButton
-              onClick={() => {
-                onChange(false);
-              }}>
+            <STCheckbox
+              checked={false}
+              value={true}
+              label="Don't show again"
+              name="checkbox2"
+              onChange={onChangePopover}
+            />
+            <STSimpleButton value={false} onClick={onChangePopover}>
               Dismiss
             </STSimpleButton>
           </>

@@ -14,7 +14,7 @@ export default {
   component: STPopover,
 };
 
-export const STInput = withStyles((theme) => ({
+const STInput = withStyles((theme) => ({
   label: {
     fontSize: '14px',
   },
@@ -47,7 +47,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const PopoverExampleSm = ({ onChange = () => {} }) => {
+const PopoverExampleSm = ({ onChange = () => {} }) => {
   const anchorEl = useRef(null);
   const [open, setOpen] = useState(false);
 
@@ -58,6 +58,11 @@ export const PopoverExampleSm = ({ onChange = () => {} }) => {
   const handlePopoverClose = () => {
     setOpen(false);
   };
+  const onChangePopover = (e) => {
+    onChange(e.currentTarget.value);
+    handlePopoverClose();
+  };
+
   const classes = useStyles();
   return (
     <div className={classes.block}>
@@ -77,16 +82,10 @@ export const PopoverExampleSm = ({ onChange = () => {} }) => {
         width={253}
         footerContent={
           <>
-            <STSimpleButton
-              onClick={() => {
-                onChange(false);
-              }}>
+            <STSimpleButton value={false} onClick={onChangePopover}>
               No
             </STSimpleButton>
-            <STSimpleButton
-              onClick={() => {
-                onChange(true);
-              }}>
+            <STSimpleButton value={true} onClick={onChangePopover}>
               Yes, update it
             </STSimpleButton>
           </>
@@ -97,16 +96,19 @@ export const PopoverExampleSm = ({ onChange = () => {} }) => {
   );
 };
 
-export const PopoverExampleLg = ({ onChange = () => {} }) => {
+const PopoverExampleLg = ({ onChange = () => {} }) => {
   const anchorEl = useRef(null);
   const [open, setOpen] = useState(false);
 
   const handlePopoverOpen = (event) => {
     setOpen(true);
   };
-
   const handlePopoverClose = () => {
     setOpen(false);
+  };
+  const onChangePopover = (e) => {
+    onChange(e.currentTarget.value);
+    handlePopoverClose();
   };
 
   const classes = useStyles();
@@ -128,11 +130,14 @@ export const PopoverExampleLg = ({ onChange = () => {} }) => {
         width={350}
         footerContent={
           <>
-            <STCheckbox checked={false} label="Don't show again" name="checkbox2" onChange={onChange} />
-            <STSimpleButton
-              onClick={() => {
-                onChange(false);
-              }}>
+            <STCheckbox
+              checked={false}
+              value={true}
+              label="Don't show again"
+              name="checkbox2"
+              onChange={onChangePopover}
+            />
+            <STSimpleButton value={false} onClick={onChangePopover}>
               Dismiss
             </STSimpleButton>
           </>
@@ -144,7 +149,7 @@ export const PopoverExampleLg = ({ onChange = () => {} }) => {
   );
 };
 
-export const PopoverExampleArrowLeft = ({ onChange = () => {} }) => {
+const PopoverExampleArrowLeft = ({ onChange = () => {} }) => {
   const anchorEl = useRef(null);
   const [open, setOpen] = useState(false);
 
@@ -154,6 +159,10 @@ export const PopoverExampleArrowLeft = ({ onChange = () => {} }) => {
 
   const handlePopoverClose = () => {
     setOpen(false);
+  };
+  const onChangePopover = (e) => {
+    onChange(e.currentTarget.value);
+    handlePopoverClose();
   };
   const classes = useStyles();
   return (
@@ -176,11 +185,14 @@ export const PopoverExampleArrowLeft = ({ onChange = () => {} }) => {
         width={350}
         footerContent={
           <>
-            <STCheckbox checked={false} label="Don't show again" name="checkbox2" onChange={onChange} />
-            <STSimpleButton
-              onClick={() => {
-                onChange(false);
-              }}>
+            <STCheckbox
+              checked={false}
+              value={true}
+              label="Don't show again"
+              name="checkbox2"
+              onChange={onChangePopover}
+            />
+            <STSimpleButton value={false} onClick={onChangePopover}>
               Dismiss
             </STSimpleButton>
           </>
@@ -192,9 +204,9 @@ export const PopoverExampleArrowLeft = ({ onChange = () => {} }) => {
   );
 };
 
-export const PopoverStorybook = () => <PopoverExampleSm />;
-export const PopoverLargeStorybook = () => <PopoverExampleLg />;
-export const PopoverArrowLeftStorybook = () => <PopoverExampleArrowLeft />;
+export const PopoverStorybook = () => <PopoverExampleSm onChange={action('changed')} />;
+export const PopoverLargeStorybook = () => <PopoverExampleLg onChange={action('changed')} />;
+export const PopoverArrowLeftStorybook = () => <PopoverExampleArrowLeft onChange={action('changed')} />;
 
 PopoverStorybook.story = {
   name: 'Popover default',

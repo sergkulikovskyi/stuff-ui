@@ -1,12 +1,5 @@
 import React, { useState, useRef } from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Button from '@material-ui/core/Button';
-import STCheckbox from '../ui/core/checkbox';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { COLORS, CONSTANTS } from '../ui/STTheme';
-import STPopover from '../ui/core/popover';
+import { withStyles } from '@material-ui/core/styles';
 import { action } from '@storybook/addon-actions';
 import STExtract from '../ui/core/extract';
 
@@ -38,6 +31,7 @@ const STExtractExample = () => {
   const handlePopoverClose = () => {
     setOpen(false);
   };
+
   const data = [
     {
       label: 'Business name',
@@ -76,6 +70,7 @@ const STExtractExample = () => {
         caption="Add to:"
         onClose={handlePopoverClose}
         options={data}
+        onChange={action('changed')}
       />
     </div>
   );

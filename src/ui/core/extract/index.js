@@ -50,6 +50,10 @@ const STExtract = withStyles((theme, other) => {
     },
   };
 })(({ classes, children, caption, options = [], onChange = () => {}, paperStyles, ...props }) => {
+  const onClicItem = (item) => {
+    onChange(item);
+    props.onClose();
+  };
   return (
     <div className={classes.popover}>
       <div className={classes.overlay} />
@@ -63,12 +67,12 @@ const STExtract = withStyles((theme, other) => {
         disableRestoreFocus>
         <div className={classes.caption}>{caption}</div>
         <ul className={classes.list}>
-          {options.map((item) => (
-            <li className={clsx(classes.listItem, { [classes.listWithLine]: item.withLine })}>
+          {options.map((item, i) => (
+            <li key={i + 'extract'} className={clsx(classes.listItem, { [classes.listWithLine]: item.withLine })}>
               <button
                 type="button"
                 onClick={() => {
-                  onChange(item);
+                  onClicItem(item);
                 }}
                 className={classes.listButton}>
                 {item.label}
