@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { withStyles } from '@material-ui/core/styles';
-import { COLORS } from '../../STTheme';
+import { withStyles, ThemeProvider } from '@material-ui/core/styles';
+import STTheme, { COLORS } from '../../STTheme';
 
 const SimpleSwitch = withStyles((theme) => ({
   root: {
@@ -30,7 +30,7 @@ const SimpleSwitch = withStyles((theme) => ({
   },
   track: {
     borderRadius: 25 / 2,
-    backgroundColor: COLORS.GRAY2,
+    backgroundColor: STTheme.palette.gray2,
     opacity: 1,
     transition: theme.transitions.create(['background-color', 'border']),
   },
@@ -42,7 +42,7 @@ const SimpleSwitch = withStyles((theme) => ({
       color: COLORS.WHITE,
     },
     '&$switchBase + $track': {
-      backgroundColor: COLORS.GRAY3,
+      backgroundColor: STTheme.palette.gray1,
       opacity: 1,
     },
   },
@@ -67,22 +67,26 @@ const SimpleSwitch = withStyles((theme) => ({
 });
 
 const SimpleFormControlLabel = withStyles((theme) => ({
+  root: {
+    marginLeft: 0,
+  },
   label: {
     fontSize: '17px',
   },
   disabled: {
     '&$label': {
-      color: COLORS.GRAY2,
+      color: STTheme.palette.gray2,
     },
   },
 }))(({ classes, checked, ...props }) => {
   return (
     <FormControlLabel
       classes={{
+        root: classes.root,
         label: classes.label,
         disabled: classes.disabled,
       }}
-      style={{ color: checked ? COLORS.BLACK : COLORS.GRAY2 }}
+      style={{ color: checked ? COLORS.BLACK : STTheme.palette.gray2 }}
       {...props}
     />
   );
@@ -98,14 +102,18 @@ const STSwitch = ({ checked, label, onChange = () => {}, disabled }) => {
     setChecked(!stateChecked);
     onChange(e, !stateChecked);
   };
-  return label ? (
-    <SimpleFormControlLabel
-      control={<SimpleSwitch checked={stateChecked} onChange={handleChange} disabled={disabled} />}
-      label={label}
-      checked={stateChecked}
-    />
-  ) : (
-    <SimpleSwitch checked={stateChecked} onChange={handleChange} disabled={disabled} />
+  return (
+    <ThemeProvider theme={STTheme}>
+      {label ? (
+        <SimpleFormControlLabel
+          control={<SimpleSwitch checked={stateChecked} onChange={handleChange} disabled={disabled} />}
+          label={label}
+          checked={stateChecked}
+        />
+      ) : (
+        <SimpleSwitch checked={stateChecked} onChange={handleChange} disabled={disabled} />
+      )}
+    </ThemeProvider>
   );
 };
 

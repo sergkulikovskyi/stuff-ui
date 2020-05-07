@@ -7,9 +7,10 @@ import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
 import getListPosition from '../../helpers/getListPosition';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 import STTheme, { COLORS } from '../../STTheme';
 
 const IconArrow = ({ className }) => (
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => {
       display: 'inline-flex',
       position: 'relative',
       padding: '15px 10px',
-      fontFamily: theme.typography.fontFamily,
+      fontFamily: STTheme.typography.fontFamily,
     },
     iconOpen: {
       transform: 'rotate(180deg)',
@@ -100,7 +101,8 @@ const useStyles = makeStyles((theme) => {
       width: '100%',
       position: 'relative',
       padding: '20px 10px 20px 20px',
-      borderBottom: `1px solid ${COLORS.GARY4}`,
+      borderBottom: `1px solid ${STTheme.palette.gray4}`,
+      cursor: 'pointer',
       '&:hover': {
         textShadow: '0px 0px 1px currentColor',
         '& $iconRight': {
@@ -117,7 +119,7 @@ const useStyles = makeStyles((theme) => {
     menuNested: {},
     iconRight: {
       transform: 'rotate(-90deg)',
-      color: COLORS.GARY4,
+      color: STTheme.palette.gray4,
     },
     textField: {
       display: 'flex',
@@ -125,7 +127,7 @@ const useStyles = makeStyles((theme) => {
       height: 60,
       '& label': {
         fontSize: 14,
-        color: COLORS.GRAY2,
+        color: STTheme.palette.gray2,
         textShadow: 'none',
       },
       '& label.Mui-focused': {
@@ -135,7 +137,7 @@ const useStyles = makeStyles((theme) => {
         borderBottomColor: COLORS.TURQUOISE,
       },
       '& .MuiInput-underline:before': {
-        borderBottomColor: COLORS.GARY4,
+        borderBottomColor: STTheme.palette.gray4,
       },
     },
     inputControl: {
@@ -152,6 +154,7 @@ const STNestedList = ({ data, index, clickItem }) => {
   const [options, setOptions] = useState([]);
   const [suggestValue, setSuggestValue] = useState('');
   const [stylePos, setStylePos] = useState({});
+  const parentRef = useRef(null);
   const listRef = useRef(null);
   const { value, label, suggest } = data;
 
@@ -166,24 +169,20 @@ const STNestedList = ({ data, index, clickItem }) => {
     setStylePos(listStyle);
   }, [listRef]);
 
-  const openMenu = () => {
-    if (!open) {
-      setOpen(true);
-    }
+  const toggleMenu = () => {
+    setOpen(!open);
   };
-  const closeMenu = () => {
-    setOpen(false);
-  };
+
   const onChangeSuggest = ({ target }) => {
     const reg = new RegExp(target.value, 'gi');
     const result = data.value.filter((item) => item.label.search(reg) !== -1);
     setSuggestValue(target.value);
     setOptions(result);
   };
-
+  useOnClickOutside(parentRef, () => setOpen(false));
   const classes = useStyles();
   return (
-    <div onMouseOver={openMenu} onMouseLeave={closeMenu} className={classes.nestedContainer}>
+    <div className={classes.nestedContainer} ref={parentRef} onClick={toggleMenu}>
       <div className={classes.listHeader}>
         <span className={classes.nestedHeaderLabel}>{label}</span>
         <IconArrow className={clsx(classes.icon, classes.iconRight)} />
@@ -229,6 +228,7 @@ const STDropdown = ({ selected = {}, onChange = () => {}, multiple, options, ...
   const [stateOptions, setStateOptions] = useState([]);
   const [stylePos, setStylePos] = useState({});
   const [open, setOpen] = useState(false);
+  const parentRef = useRef();
   const listRef = useRef(null);
 
   useEffect(() => {
@@ -248,10 +248,8 @@ const STDropdown = ({ selected = {}, onChange = () => {}, multiple, options, ...
     }, 100);
   }, [listRef]);
 
-  const openMenu = () => {
-    if (!open) {
-      setOpen(true);
-    }
+  const toggleMenu = () => {
+    setOpen(!open);
   };
   const closeMenu = () => {
     setOpen(false);
@@ -266,37 +264,39 @@ const STDropdown = ({ selected = {}, onChange = () => {}, multiple, options, ...
   };
 
   const arrowOpen = (open && !stateValue.label) || (!open && stateValue.label);
-
+  useOnClickOutside(parentRef, () => setOpen(false));
   return (
-    <div onMouseOver={openMenu} onMouseLeave={closeMenu} className={classes.container}>
-      <div className={classes.listHeader}>
-        <span className={classes.headerLabel}>{stateValue.label || options[0].label}</span>
-        <IconArrow className={clsx(classes.icon, { [classes.iconOpen]: arrowOpen })} />
+    <ThemeProvider theme={STTheme}>
+      <div className={classes.container} ref={parentRef}>
+        <div className={classes.listHeader} onClick={toggleMenu}>
+          <span className={classes.headerLabel}>{stateValue.label || options[0].label}</span>
+          <IconArrow className={clsx(classes.icon, { [classes.iconOpen]: arrowOpen })} />
+        </div>
+        <Paper
+          className={clsx(classes.menu, { [classes.openedMenu]: open })}
+          elevation={8}
+          ref={listRef}
+          style={stylePos}>
+          <List className={classes.list}>
+            {stateOptions.map((item, i) => (
+              <ListItem key={i + item.value} className={classes.itemList}>
+                {Array.isArray(item.value) ? (
+                  <STNestedList data={item} clickItem={clickItem} />
+                ) : (
+                  <Button
+                    className={classes.listButton}
+                    onClick={() => {
+                      clickItem(item);
+                    }}>
+                    {item.label}
+                  </Button>
+                )}
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
       </div>
-      <Paper
-        className={clsx(classes.menu, { [classes.openedMenu]: open })}
-        elevation={8}
-        ref={listRef}
-        style={stylePos}>
-        <List className={classes.list}>
-          {stateOptions.map((item, i) => (
-            <ListItem key={i + item.value} className={classes.itemList}>
-              {Array.isArray(item.value) ? (
-                <STNestedList data={item} clickItem={clickItem} />
-              ) : (
-                <Button
-                  className={classes.listButton}
-                  onClick={() => {
-                    clickItem(item);
-                  }}>
-                  {item.label}
-                </Button>
-              )}
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
-    </div>
+    </ThemeProvider>
   );
 };
 

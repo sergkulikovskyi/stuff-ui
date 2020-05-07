@@ -8,12 +8,12 @@ import STDropdown from './ui/core/dropdown';
 
 import ExtractExample from './ui/examples/extract';
 import { PopoverExampleSm, PopoverExampleLg, PopoverExampleArrowLeft } from './ui/examples/popover';
-import TimePickerExample from './ui/examples/timepicker';
 
 function App() {
   return (
     <div>
       <STButton>Button</STButton>
+      <STButton color="secondary">Active btn</STButton>
       <STButton type="toggle">Button</STButton>
       <STSwitch checked={false} />
       <STSwitch disabled label="disabled" checked={false} />
@@ -70,7 +70,6 @@ function App() {
         <PopoverExampleArrowLeft />
       </div>
       <ExtractExample />
-      <TimePickerExample />
     </div>
   );
 }

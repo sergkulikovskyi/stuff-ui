@@ -18,10 +18,17 @@ const ExtractExample = () => {
   const anchorEl = useRef(null);
   const [open, setOpen] = useState(false);
 
-  const handleToggleOpen = () => {
-    setOpen(!open);
-  };
+  const handleMouseUp = () => {
+    const selection = window.getSelection();
 
+    // Resets when the selection has a length of 0
+    if (!selection || selection.anchorOffset === selection.focusOffset) {
+      handlePopoverClose();
+      return;
+    }
+
+    setOpen(true);
+  };
   const handlePopoverClose = () => {
     setOpen(false);
   };
@@ -56,7 +63,7 @@ const ExtractExample = () => {
   ];
   return (
     <div>
-      <AnchorElement onClick={handleToggleOpen} parentFef={anchorEl} />
+      <AnchorElement onMouseUp={handleMouseUp} parentFef={anchorEl} />
       <STExtract
         anchorEl={anchorEl.current}
         open={open}

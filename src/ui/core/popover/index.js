@@ -1,8 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, ThemeProvider } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
-import { COLORS } from '../../STTheme';
+import STTheme, { COLORS } from '../../STTheme';
 
 const STPopover = withStyles((theme, other) => {
   return {
@@ -48,9 +48,9 @@ const STPopover = withStyles((theme, other) => {
       transform: 'rotate(-45deg)',
     },
     mainContent: {
-      color: COLORS.GRAY,
-      fontSize: theme.typography.fontSize,
-      fontFamily: theme.typography.fontFamily,
+      color: STTheme.palette.gray3,
+      fontSize: STTheme.typography.fontSize,
+      fontFamily: STTheme.typography.fontFamily,
       margin: 0,
     },
     footer: {
@@ -71,21 +71,23 @@ const STPopover = withStyles((theme, other) => {
       break;
   }
   return (
-    <div className={classes.popover}>
-      <div className={classes.overlay} />
-      <Popover
-        className={classes.popover}
-        classes={{
-          paper: classes.paper,
-        }}
-        PaperProps={{ style: { width, ...paperStyles } }}
-        {...props}
-        disableRestoreFocus>
-        <div className={clsx(classes.triangle, triangleClass)} />
-        <div className={classes.mainContent}>{children}</div>
-        <div className={classes.footer}>{footerContent}</div>
-      </Popover>
-    </div>
+    <ThemeProvider theme={STTheme}>
+      <div className={classes.popover}>
+        <div className={classes.overlay} />
+        <Popover
+          className={classes.popover}
+          classes={{
+            paper: classes.paper,
+          }}
+          PaperProps={{ style: { width, ...paperStyles } }}
+          {...props}
+          disableRestoreFocus>
+          <div className={clsx(classes.triangle, triangleClass)} />
+          <div className={classes.mainContent}>{children}</div>
+          <div className={classes.footer}>{footerContent}</div>
+        </Popover>
+      </div>
+    </ThemeProvider>
   );
 });
 

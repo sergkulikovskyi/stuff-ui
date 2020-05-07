@@ -72,7 +72,7 @@ export const PopoverExampleSm = ({ onChange = () => {} }) => {
           vertical: 'top',
           horizontal: 'left',
         }}
-        width={253}
+        width={245}
         footerContent={
           <>
             <STSimpleButton value={false} onClick={onChangePopover}>

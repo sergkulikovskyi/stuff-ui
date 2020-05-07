@@ -8,34 +8,37 @@ import STTheme, { COLORS, CONSTANTS } from '../../STTheme';
 
 const STPrimaryButton = withStyles((theme) => ({
   root: {
-    color: COLORS.WHITE,
+    color: STTheme.palette.white,
     paddingRight: CONSTANTS.BUTTON_PADDING,
     paddingLeft: CONSTANTS.BUTTON_PADDING,
-    backgroundColor: COLORS.TURQUOISE,
+    backgroundColor: STTheme.palette.turquise,
+    fontWeight: 900,
     '&:hover': {
-      backgroundColor: COLORS.TURQUOISE_HOVERED,
+      backgroundColor: STTheme.palette.turquiseHover,
     },
     '&:disabled': {
-      backgroundColor: COLORS.TURQUOISE,
-      color: COLORS.WHITE_WITH_OPACITY,
+      backgroundColor: STTheme.palette.turquise,
+      color: STTheme.palette.whiteOpacity,
     },
   },
 }))(Button);
 
 const STSecondaryButton = withStyles((theme) => ({
   root: {
-    color: COLORS.TURQUOISE,
-    border: `solid 1px ${COLORS.GRAY}`,
+    color: STTheme.palette.gray3,
+    border: `solid 1px ${STTheme.palette.gray3}`,
     paddingRight: CONSTANTS.BUTTON_PADDING,
     paddingLeft: CONSTANTS.BUTTON_PADDING,
-    backgroundColor: COLORS.GRAY3,
+    backgroundColor: STTheme.palette.gray1,
+    transition:
+      'all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     '&:hover': {
-      border: `solid 1px ${COLORS.TURQUOISE}`,
-      color: COLORS.TURQUOISE,
-      backgroundColor: COLORS.GRAY3,
+      border: `solid 1px ${STTheme.palette.turquise}`,
+      color: STTheme.palette.turquise,
+      backgroundColor: STTheme.palette.gray1,
     },
     '&:disabled': {
-      backgroundColor: COLORS.GRAY3,
+      backgroundColor: STTheme.palette.gray1,
       border: 'solid 1px rgba(195, 195, 195, 0.4)',
       color: 'rgba(195, 195, 195, 0.4)',
     },
@@ -46,7 +49,7 @@ const STSecondaryButton = withStyles((theme) => ({
 const STSelectableButton = withStyles((theme) => {
   return {
     root: {
-      color: COLORS.GRAY,
+      color: STTheme.palette.gray3,
       paddingRight: CONSTANTS.BUTTON_PADDING,
       paddingLeft: CONSTANTS.BUTTON_PADDING,
       backgroundColor: COLORS.WHITE,
@@ -61,6 +64,7 @@ const STSelectableButton = withStyles((theme) => {
         boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.05)',
         color: COLORS.TURQUOISE,
         backgroundColor: COLORS.WHITE,
+        fontWeight: 500,
         '&:hover': {
           backgroundColor: COLORS.WHITE,
         },
@@ -83,7 +87,7 @@ const STSelectableButton = withStyles((theme) => {
 
 const SimpleIconButton = withStyles((theme) => ({
   root: {
-    color: COLORS.GRAY,
+    color: STTheme.palette.gray3,
     '&:hover': {
       color: COLORS.TURQUOISE,
       background: 'transparent',
@@ -104,7 +108,7 @@ const SimpleIconButton = withStyles((theme) => ({
 // text button
 const TextButton = withStyles((theme) => ({
   root: {
-    color: COLORS.GRAY,
+    color: STTheme.palette.gray3,
     background: 'transparent',
     boxShadow: 'none',
     textTransform: 'inherit',

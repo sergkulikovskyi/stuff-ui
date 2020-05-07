@@ -1,7 +1,7 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, ThemeProvider } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
-import { COLORS } from '../../STTheme';
+import STTheme, { COLORS } from '../../STTheme';
 import clsx from 'clsx';
 
 const STExtract = withStyles((theme, other) => {
@@ -30,7 +30,7 @@ const STExtract = withStyles((theme, other) => {
     listWithLine: {
       '& $listButton': {
         padding: '19px 0',
-        borderBottom: `1px solid ${COLORS.GRAY3}`,
+        borderBottom: `1px solid ${STTheme.palette.gray1}`,
       },
 
       '&:last-of-type $listButton': {
@@ -50,38 +50,40 @@ const STExtract = withStyles((theme, other) => {
     },
   };
 })(({ classes, children, caption, options = [], onChange = () => {}, paperStyles, ...props }) => {
-  const onClicItem = (item) => {
+  const onClickItem = (item) => {
     onChange(item);
     props.onClose();
   };
   return (
-    <div className={classes.popover}>
-      <div className={classes.overlay} />
-      <Popover
-        className={classes.popover}
-        classes={{
-          paper: classes.paper,
-        }}
-        PaperProps={{ style: { ...paperStyles } }}
-        {...props}
-        disableRestoreFocus>
-        <div className={classes.caption}>{caption}</div>
-        <ul className={classes.list}>
-          {options.map((item, i) => (
-            <li key={i + 'extract'} className={clsx(classes.listItem, { [classes.listWithLine]: item.withLine })}>
-              <button
-                type="button"
-                onClick={() => {
-                  onClicItem(item);
-                }}
-                className={classes.listButton}>
-                {item.label}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </Popover>
-    </div>
+    <ThemeProvider theme={STTheme}>
+      <div className={classes.popover}>
+        <div className={classes.overlay} />
+        <Popover
+          className={classes.popover}
+          classes={{
+            paper: classes.paper,
+          }}
+          PaperProps={{ style: { ...paperStyles } }}
+          {...props}
+          disableRestoreFocus>
+          <div className={classes.caption}>{caption}</div>
+          <ul className={classes.list}>
+            {options.map((item, i) => (
+              <li key={i + 'extract'} className={clsx(classes.listItem, { [classes.listWithLine]: item.withLine })}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClickItem(item);
+                  }}
+                  className={classes.listButton}>
+                  {item.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </Popover>
+      </div>
+    </ThemeProvider>
   );
 });
 

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { COLORS } from '../../STTheme';
+import STTheme, { COLORS } from '../../STTheme';
 
 const useStyles = makeStyles({
   root: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     width: 17,
     height: 17,
     boxSizing: 'border-box',
-    border: `1px solid ${COLORS.GRAY2}`,
+    border: `1px solid ${STTheme.palette.gray2}`,
     backgroundColor: 'transparent',
     backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
     '$root.Mui-focusVisible &': {
@@ -28,8 +28,8 @@ const useStyles = makeStyles({
     },
     'input:disabled ~ &': {
       boxShadow: 'none',
-      background: COLORS.GRAY3,
-      border: `1px solid ${COLORS.GRAY3}`,
+      background: STTheme.palette.gray1,
+      border: `1px solid ${STTheme.palette.gray1}`,
     },
   },
   checkedIcon: {
@@ -74,7 +74,7 @@ const SimpleFormControlLabel = withStyles((theme) => ({
   },
   disabled: {
     '&$label': {
-      color: COLORS.GRAY2,
+      color: STTheme.palette.gray2,
     },
   },
 }))(({ classes, checked, ...props }) => {
@@ -84,7 +84,7 @@ const SimpleFormControlLabel = withStyles((theme) => ({
         label: classes.label,
         disabled: classes.disabled,
       }}
-      style={{ color: checked ? COLORS.BLACK : COLORS.GRAY2 }}
+      style={{ color: checked ? COLORS.BLACK : STTheme.palette.gray2 }}
       {...props}
     />
   );
