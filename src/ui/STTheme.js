@@ -12,7 +12,15 @@ let STTheme = createMuiTheme({
     danger: 'orange',
   },
   typography: {
-    fontFamily: ['Roboto', 'Helvetica', 'Arial'].join(','),
+    fontFamily: ['Avenir-Roman', 'Helvetica', 'Arial'].join(','),
+    input: {
+      label: {
+        fontSize: 14,
+      },
+      input: {
+        fontSize: 17,
+      },
+    },
     button: {
       fontSize: 14,
     },

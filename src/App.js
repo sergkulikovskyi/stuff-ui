@@ -5,9 +5,10 @@ import STSwitch from './ui/core/switch';
 import STCheckbox from './ui/core/checkbox';
 import STStatus from './ui/core/status';
 import STDropdown from './ui/core/dropdown';
-import ExtractExample from './ui/examples/extract';
 
+import ExtractExample from './ui/examples/extract';
 import { PopoverExampleSm, PopoverExampleLg, PopoverExampleArrowLeft } from './ui/examples/popover';
+import TimePickerExample from './ui/examples/timepicker';
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
         <PopoverExampleArrowLeft />
       </div>
       <ExtractExample />
+      <TimePickerExample />
     </div>
   );
 }
