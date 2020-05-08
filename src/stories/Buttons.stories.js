@@ -6,7 +6,7 @@ import STStatus from '../ui/core/status';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: '01-buttons',
+  title: '1-Buttons',
   component: STButton,
 };
 

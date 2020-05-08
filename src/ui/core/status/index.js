@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import STTheme, { COLORS } from '../../STTheme';
+import STTheme from '../../STTheme';
 
 const useStyles = makeStyles({
   status: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     transform: 'rotate(180deg)',
   },
   icon: {
-    color: COLORS.WHITE,
+    color: STTheme.palette.white,
     right: 4,
     transition: 'all .1s linear',
   },
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
   select: {
     display: 'inline-flex',
     alignItems: 'center',
-    color: COLORS.WHITE,
+    color: STTheme.palette.white,
     height: 27,
     padding: '0 6px 0 10px',
   },
@@ -116,7 +116,7 @@ const STStatus = ({ status = {}, onChange = () => {}, label, ...rest }) => {
       <div className={classes.status} onMouseOver={handleClick} onMouseLeave={handleClose}>
         <Button
           className={classes.select}
-          style={{ backgroundColor: stateStatus.value === 0 ? COLORS.TURQUOISE : COLORS.RED }}>
+          style={{ backgroundColor: stateStatus.value === 0 ? STTheme.palette.turquise : STTheme.palette.red }}>
           <span className={classes.label}>{stateStatus.label}</span>
           <IconDown className={clsx(classes.icon, { [classes.iconOpen]: !!anchorEl })} />
         </Button>

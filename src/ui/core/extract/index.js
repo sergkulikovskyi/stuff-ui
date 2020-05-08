@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles, ThemeProvider } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
-import STTheme, { COLORS } from '../../STTheme';
+import STTheme from '../../STTheme';
 import clsx from 'clsx';
 
 const STExtract = withStyles((theme, other) => {
@@ -16,7 +16,7 @@ const STExtract = withStyles((theme, other) => {
       minWidth: 208,
     },
     caption: {
-      color: COLORS.GRAY6,
+      color: STTheme.palette.gray6,
       fontSize: theme.typography.fontSize,
       fontFamily: theme.typography.fontFamily,
       margin: '0px 0px 10px 0',
@@ -42,7 +42,7 @@ const STExtract = withStyles((theme, other) => {
       textAlign: 'left',
       border: 'none',
       outline: 'none',
-      color: COLORS.BLACK,
+      color: STTheme.palette.black,
       fontSize: theme.typography.fontSize,
       fontFamily: theme.typography.fontFamily,
       padding: '7.5px 0',

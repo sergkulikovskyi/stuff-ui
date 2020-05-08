@@ -4,7 +4,7 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import IconButton from '@material-ui/core/IconButton';
 import { isEqual } from 'lodash';
 import { withStyles, ThemeProvider } from '@material-ui/core/styles';
-import STTheme, { COLORS, CONSTANTS } from '../../STTheme';
+import STTheme, { CONSTANTS } from '../../STTheme';
 
 const STPrimaryButton = withStyles((theme) => ({
   root: {
@@ -13,6 +13,8 @@ const STPrimaryButton = withStyles((theme) => ({
     paddingLeft: CONSTANTS.BUTTON_PADDING,
     backgroundColor: STTheme.palette.turquise,
     fontWeight: 900,
+    height: CONSTANTS.BUTTON_HEIGHT,
+    linehHeight: 'inherit',
     '&:hover': {
       backgroundColor: STTheme.palette.turquiseHover,
     },
@@ -30,6 +32,7 @@ const STSecondaryButton = withStyles((theme) => ({
     paddingRight: CONSTANTS.BUTTON_PADDING,
     paddingLeft: CONSTANTS.BUTTON_PADDING,
     backgroundColor: STTheme.palette.gray1,
+    height: CONSTANTS.BUTTON_HEIGHT,
     transition:
       'all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     '&:hover': {
@@ -52,21 +55,22 @@ const STSelectableButton = withStyles((theme) => {
       color: STTheme.palette.gray3,
       paddingRight: CONSTANTS.BUTTON_PADDING,
       paddingLeft: CONSTANTS.BUTTON_PADDING,
-      backgroundColor: COLORS.WHITE,
+      backgroundColor: STTheme.palette.white,
+      height: CONSTANTS.BUTTON_HEIGHT,
       border: 'none',
       '&:hover': {
-        color: COLORS.TURQUOISE,
-        backgroundColor: COLORS.WHITE,
+        color: STTheme.palette.turquise,
+        backgroundColor: STTheme.palette.white,
       },
     },
     selected: {
       '&$selected': {
         boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.05)',
-        color: COLORS.TURQUOISE,
-        backgroundColor: COLORS.WHITE,
+        color: STTheme.palette.turquise,
+        backgroundColor: STTheme.palette.white,
         fontWeight: 500,
         '&:hover': {
-          backgroundColor: COLORS.WHITE,
+          backgroundColor: STTheme.palette.white,
         },
       },
     },
@@ -89,7 +93,7 @@ const SimpleIconButton = withStyles((theme) => ({
   root: {
     color: STTheme.palette.gray3,
     '&:hover': {
-      color: COLORS.TURQUOISE,
+      color: STTheme.palette.turquise,
       background: 'transparent',
     },
   },
@@ -113,7 +117,7 @@ const TextButton = withStyles((theme) => ({
     boxShadow: 'none',
     textTransform: 'inherit',
     '&:hover': {
-      color: COLORS.TURQUOISE,
+      color: STTheme.palette.turquise,
       background: 'transparent',
       boxShadow: 'none',
     },

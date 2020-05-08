@@ -11,7 +11,7 @@ import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
 import getListPosition from '../../helpers/getListPosition';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
-import STTheme, { COLORS } from '../../STTheme';
+import STTheme from '../../STTheme';
 
 const IconArrow = ({ className }) => (
   <svg
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => {
       transform: 'rotate(180deg)',
     },
     icon: {
-      color: COLORS.BLACK,
+      color: STTheme.palette.black,
       right: 4,
       height: 19,
       transition: 'all .1s linear',
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => {
     },
     itemList: {
       padding: 0,
-      '&:last-of-type $nestedContainer': {
+      '&:last-of-type > div': {
         borderBottom: 'none',
         paddingBottom: '10px',
       },
@@ -106,11 +106,8 @@ const useStyles = makeStyles((theme) => {
       '&:hover': {
         textShadow: '0px 0px 1px currentColor',
         '& $iconRight': {
-          color: COLORS.BLACK,
+          color: STTheme.palette.black,
         },
-      },
-      '&:last-of-type': {
-        borderTop: 'none',
       },
     },
     nestedHeaderLabel: {
@@ -131,10 +128,10 @@ const useStyles = makeStyles((theme) => {
         textShadow: 'none',
       },
       '& label.Mui-focused': {
-        color: COLORS.TURQUOISE,
+        color: STTheme.palette.turquise,
       },
       '& .MuiInput-underline:after': {
-        borderBottomColor: COLORS.TURQUOISE,
+        borderBottomColor: STTheme.palette.turquise,
       },
       '& .MuiInput-underline:before': {
         borderBottomColor: STTheme.palette.gray4,
@@ -223,7 +220,7 @@ const STNestedList = ({ data, index, clickItem }) => {
   );
 };
 
-const STDropdown = ({ selected = {}, onChange = () => {}, multiple, options, ...rest }) => {
+const STDropdown = ({ selected = {}, headerIcon, onChange = () => {}, multiple, options, ...rest }) => {
   const [stateValue, setStateValue] = useState({});
   const [stateOptions, setStateOptions] = useState([]);
   const [stylePos, setStylePos] = useState({});
@@ -268,10 +265,17 @@ const STDropdown = ({ selected = {}, onChange = () => {}, multiple, options, ...
   return (
     <ThemeProvider theme={STTheme}>
       <div className={classes.container} ref={parentRef}>
-        <div className={classes.listHeader} onClick={toggleMenu}>
-          <span className={classes.headerLabel}>{stateValue.label || options[0].label}</span>
-          <IconArrow className={clsx(classes.icon, { [classes.iconOpen]: arrowOpen })} />
+        <div onClick={toggleMenu} className={classes.listHeader}>
+          {headerIcon ? (
+            headerIcon
+          ) : (
+            <>
+              <span className={classes.headerLabel}>{stateValue.label || options[0].label}</span>
+              <IconArrow className={clsx(classes.icon, { [classes.iconOpen]: arrowOpen })} />
+            </>
+          )}
         </div>
+
         <Paper
           className={clsx(classes.menu, { [classes.openedMenu]: open })}
           elevation={8}

@@ -3,6 +3,7 @@ import green from '@material-ui/core/colors/green';
 
 export const CONSTANTS = {
   BUTTON_PADDING: 20,
+  BUTTON_HEIGHT: 40,
 };
 
 export const COLORS = {
@@ -34,6 +35,7 @@ let STTheme = createMuiTheme({
     gray4: COLORS.GRAY4,
     gray5: COLORS.GRAY5,
     gray6: COLORS.GARY6,
+    red: COLORS.RED,
     primary: {
       main: '#3ebfcf',
     },
@@ -54,6 +56,7 @@ let STTheme = createMuiTheme({
     },
     button: {
       fontSize: 14,
+      lineHeight: 'inherit',
     },
   },
 });

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import STTheme, { COLORS } from '../../STTheme';
+import STTheme from '../../STTheme';
 
 const useStyles = makeStyles({
   root: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
       outlineOffset: 2,
     },
     'input:hover ~ &': {
-      backgroundColor: COLORS.WHITE,
+      backgroundColor: STTheme.palette.white,
     },
     'input:disabled ~ &': {
       boxShadow: 'none',
@@ -33,9 +33,9 @@ const useStyles = makeStyles({
     },
   },
   checkedIcon: {
-    backgroundColor: COLORS.TURQUOISE,
+    backgroundColor: STTheme.palette.turquise,
     backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
-    border: `1px solid ${COLORS.TURQUOISE}`,
+    border: `1px solid ${STTheme.palette.turquise}`,
     '&:before': {
       display: 'block',
       width: 16,
@@ -48,7 +48,7 @@ const useStyles = makeStyles({
       content: '""',
     },
     'input:hover ~ &': {
-      backgroundColor: COLORS.TURQUOISE,
+      backgroundColor: STTheme.palette.turquise,
     },
   },
 });
@@ -84,7 +84,7 @@ const SimpleFormControlLabel = withStyles((theme) => ({
         label: classes.label,
         disabled: classes.disabled,
       }}
-      style={{ color: checked ? COLORS.BLACK : STTheme.palette.gray2 }}
+      style={{ color: checked ? STTheme.palette.black : STTheme.palette.gray2 }}
       {...props}
     />
   );

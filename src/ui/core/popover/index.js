@@ -2,15 +2,13 @@ import React from 'react';
 import clsx from 'clsx';
 import { withStyles, ThemeProvider } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
-import STTheme, { COLORS } from '../../STTheme';
+import STTheme from '../../STTheme';
 
 const STPopover = withStyles((theme, other) => {
   return {
     paper: {
       fontSize: '14px',
       overflow: 'inherit',
-      marginTop: 31,
-      marginLeft: -10,
       padding: '20px 20px 0px 20px',
       boxSizing: 'border-box',
     },
@@ -47,6 +45,16 @@ const STPopover = withStyles((theme, other) => {
       left: '-9px',
       transform: 'rotate(-45deg)',
     },
+    triangleRight: {
+      top: '20px',
+      right: '-9px',
+      transform: 'rotate(135deg)',
+    },
+    triangleBottom: {
+      left: 20,
+      bottom: -9,
+      transform: 'rotate(-135deg)',
+    },
     mainContent: {
       color: STTheme.palette.gray3,
       fontSize: STTheme.typography.fontSize,
@@ -66,6 +74,12 @@ const STPopover = withStyles((theme, other) => {
   switch (arrowPosition) {
     case 'left':
       triangleClass = classes.triangleLeft;
+      break;
+    case 'right':
+      triangleClass = classes.triangleRight;
+      break;
+    case 'bottom':
+      triangleClass = classes.triangleBottom;
       break;
     default:
       break;

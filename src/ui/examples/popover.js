@@ -175,7 +175,7 @@ export const PopoverExampleArrowLeft = ({ onChange = () => {} }) => {
           horizontal: 'left',
         }}
         paperStyles={{ marginTop: 0, marginLeft: 15 }}
-        arrowPosition="left"
+        arrowPosition="right"
         width={350}
         footerContent={
           <>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles, ThemeProvider } from '@material-ui/core/styles';
-import STTheme, { COLORS } from '../../STTheme';
+import STTheme from '../../STTheme';
 
 const SimpleSwitch = withStyles((theme) => ({
   root: {
@@ -17,7 +17,7 @@ const SimpleSwitch = withStyles((theme) => ({
       transform: 'translateX(15px)',
       color: theme.palette.common.white,
       '& + $track': {
-        backgroundColor: COLORS.TURQUOISE,
+        backgroundColor: STTheme.palette.turquise,
         opacity: 1,
         border: 'none',
       },
@@ -39,7 +39,7 @@ const SimpleSwitch = withStyles((theme) => ({
   },
   disabled: {
     '& $thumb': {
-      color: COLORS.WHITE,
+      color: STTheme.palette.white,
     },
     '&$switchBase + $track': {
       backgroundColor: STTheme.palette.gray1,
@@ -86,7 +86,7 @@ const SimpleFormControlLabel = withStyles((theme) => ({
         label: classes.label,
         disabled: classes.disabled,
       }}
-      style={{ color: checked ? COLORS.BLACK : STTheme.palette.gray2 }}
+      style={{ color: checked ? STTheme.palette.black : STTheme.palette.gray2 }}
       {...props}
     />
   );
