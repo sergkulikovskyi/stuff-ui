@@ -54,7 +54,9 @@ const useStyles = makeStyles({
     border: 'none',
     outline: 'none',
     cursor: 'pointer',
+    textAlign: 'left',
     fontFamily: STTheme.typography.fontFamily,
+    fontSize: STTheme.typography.fontSize,
   },
 });
 
