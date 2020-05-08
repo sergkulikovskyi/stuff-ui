@@ -4,12 +4,14 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
+import clsx from 'clsx';
 import STCheckbox from '../ui/core/checkbox';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { COLORS, CONSTANTS } from '../ui/STTheme';
 import STPopover from '../ui/core/popover';
 import STDropdown from '../ui/core/dropdown';
 import STExtract from '../ui/core/extract';
+import STTheme from '../ui/STTheme';
 
 export default {
   title: '2-Actions',
@@ -402,78 +404,108 @@ export const PopoverStorybook = () => (
 
 //extract
 
-const AnchorElement = withStyles((theme) => ({
+const extractStyles = makeStyles({
   label: {
     fontSize: '14px',
   },
-}))(({ classes, checked, parentFef, ...props }) => {
-  return (
-    <div className={classes.margin} ref={parentFef} {...props}>
-      July 11
-    </div>
-  );
+  caption: {
+    color: STTheme.palette.gray6,
+    fontSize: STTheme.typography.fontSize,
+    fontFamily: STTheme.typography.fontFamily,
+    margin: '0px 0px 10px 0',
+  },
+  list: {
+    padding: 0,
+    margin: 0,
+    listStyle: 'none',
+  },
+  listItem: {},
+  listWithLine: {
+    '& $listButton': {
+      padding: '19px 0',
+      borderBottom: `1px solid ${STTheme.palette.gray1}`,
+    },
+
+    '&:last-of-type $listButton': {
+      borderBottom: 'none',
+    },
+  },
+  listButton: {
+    width: '100%',
+    textAlign: 'left',
+    border: 'none',
+    outline: 'none',
+    color: STTheme.palette.black,
+    fontSize: STTheme.typography.fontSize,
+    fontFamily: STTheme.typography.fontFamily,
+    padding: '7.5px 0',
+    cursor: 'pointer',
+  },
 });
 
+const data = [
+  {
+    label: 'Business name',
+    value: 'business_name',
+  },
+  {
+    label: 'Date',
+    value: 'date',
+  },
+  {
+    label: 'Time',
+    value: 'time',
+  },
+  {
+    label: 'Number of people',
+    value: 'number',
+    withLine: true,
+  },
+  {
+    label: 'Add as new parameter',
+    value: 'parameter',
+    withLine: true,
+  },
+  {
+    label: 'Add as new restriction',
+    value: 'restriction',
+    withLine: true,
+  },
+];
+
 const STExtractExample = () => {
-  const anchorEl = useRef(null);
   const [open, setOpen] = useState(false);
 
-  const handleMouseUp = () => {
-    const selection = window.getSelection();
-
-    // Resets when the selection has a length of 0
-    if (!selection || selection.anchorOffset === selection.focusOffset) {
-      handlePopoverClose();
-      return;
-    }
-
-    setOpen(true);
+  const toggleOpen = () => {
+    setOpen(!open);
   };
-  const handlePopoverClose = () => {
-    setOpen(false);
+  const onClickItem = ({ target }) => {
+    // console.log(open, 'target-', target.dataset.value);
+    toggleOpen();
   };
+  const classes = extractStyles();
 
-  const data = [
-    {
-      label: 'Business name',
-      value: 'business_name',
-    },
-    {
-      label: 'Date',
-      value: 'date',
-    },
-    {
-      label: 'Time',
-      value: 'time',
-    },
-    {
-      label: 'Number of people',
-      value: 'number',
-      withLine: true,
-    },
-    {
-      label: 'Add as new parameter',
-      value: 'parameter',
-      withLine: true,
-    },
-    {
-      label: 'Add as new restriction',
-      value: 'restriction',
-      withLine: true,
-    },
-  ];
   return (
-    <div>
-      <AnchorElement onMouseUp={handleMouseUp} parentFef={anchorEl} />
-      <STExtract
-        anchorEl={anchorEl.current}
-        open={open}
-        caption="Add to:"
-        onClose={handlePopoverClose}
-        options={data}
-        onChange={action('changed')}
-      />
-    </div>
+    <STExtract
+      open={open}
+      onOpen={toggleOpen}
+      onClose={toggleOpen}
+      content={
+        <>
+          <div className={classes.caption}>Add to:</div>
+          <ul className={classes.list}>
+            {data.map((item, i) => (
+              <li key={i + 'extract'} className={clsx(classes.listItem, { [classes.listWithLine]: item.withLine })}>
+                <button type="button" data-value={item.value} onClick={onClickItem} className={classes.listButton}>
+                  {item.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      }>
+      <div>July 11</div>
+    </STExtract>
   );
 };
 

@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { withStyles, ThemeProvider } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import STTheme from '../../STTheme';
-import clsx from 'clsx';
 
 const STExtract = withStyles((theme, other) => {
   return {
@@ -15,74 +14,53 @@ const STExtract = withStyles((theme, other) => {
       boxSizing: 'border-box',
       minWidth: 208,
     },
-    caption: {
-      color: STTheme.palette.gray6,
-      fontSize: theme.typography.fontSize,
-      fontFamily: theme.typography.fontFamily,
-      margin: '0px 0px 10px 0',
-    },
-    list: {
-      padding: 0,
-      margin: 0,
-      listStyle: 'none',
-    },
-    listItem: {},
-    listWithLine: {
-      '& $listButton': {
-        padding: '19px 0',
-        borderBottom: `1px solid ${STTheme.palette.gray1}`,
-      },
+  };
+})(({ classes, children, content, open = false, onOpen = () => {}, onClose = () => {}, paperStyles, ...props }) => {
+  const anchorEl = useRef(null);
+  const [openState, setOpen] = useState(false);
 
-      '&:last-of-type $listButton': {
-        borderBottom: 'none',
-      },
-    },
-    listButton: {
-      width: '100%',
-      textAlign: 'left',
-      border: 'none',
-      outline: 'none',
-      color: STTheme.palette.black,
-      fontSize: theme.typography.fontSize,
-      fontFamily: theme.typography.fontFamily,
-      padding: '7.5px 0',
-      cursor: 'pointer',
-    },
+  useEffect(() => {
+    if (open !== openState) {
+      setOpen(open);
+    }
+  }, [open]);
+
+  const toggleState = (flag) => {
+    flag ? onOpen(true) : onClose(false);
+    setOpen(flag);
   };
-})(({ classes, children, caption, options = [], onChange = () => {}, paperStyles, ...props }) => {
-  const onClickItem = (item) => {
-    onChange(item);
-    props.onClose();
+
+  const handleMouseUp = () => {
+    const selection = window.getSelection();
+    // Resets when the selection has a length of 0
+    if (!selection || selection.anchorOffset === selection.focusOffset) {
+      handlePopoverClose();
+      return;
+    }
+    toggleState(true);
   };
+  const handlePopoverClose = () => {
+    toggleState(false);
+  };
+
   return (
     <ThemeProvider theme={STTheme}>
-      <div className={classes.popover}>
-        <div className={classes.overlay} />
-        <Popover
-          className={classes.popover}
-          classes={{
-            paper: classes.paper,
-          }}
-          PaperProps={{ style: { ...paperStyles } }}
-          {...props}
-          disableRestoreFocus>
-          <div className={classes.caption}>{caption}</div>
-          <ul className={classes.list}>
-            {options.map((item, i) => (
-              <li key={i + 'extract'} className={clsx(classes.listItem, { [classes.listWithLine]: item.withLine })}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    onClickItem(item);
-                  }}
-                  className={classes.listButton}>
-                  {item.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </Popover>
+      <div onMouseUp={handleMouseUp} ref={anchorEl}>
+        {children}
       </div>
+      <Popover
+        className={classes.popover}
+        classes={{
+          paper: classes.paper,
+        }}
+        PaperProps={{ style: { ...paperStyles } }}
+        anchorEl={anchorEl.current}
+        open={openState}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+        {...props}>
+        {content}
+      </Popover>
     </ThemeProvider>
   );
 });

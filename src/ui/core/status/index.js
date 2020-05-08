@@ -77,9 +77,9 @@ const STListItem = ({ item, className, btnClassName, onClick }) => {
   };
   return (
     <ListItem className={className}>
-      <buttom onClick={clickItem} type="button" className={btnClassName}>
+      <button onClick={clickItem} type="button" className={btnClassName}>
         {item.label}
-      </buttom>
+      </button>
     </ListItem>
   );
 };
