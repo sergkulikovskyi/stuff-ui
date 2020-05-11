@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/main.caa9456bddba5619b282.bundle.js",
-    "main.js.map": "/main.caa9456bddba5619b282.bundle.js.map",
-    "runtime~main.js": "/runtime~main.caa9456bddba5619b282.bundle.js",
-    "runtime~main.js.map": "/runtime~main.caa9456bddba5619b282.bundle.js.map",
-    "vendors~main.js": "/vendors~main.caa9456bddba5619b282.bundle.js",
-    "vendors~main.js.map": "/vendors~main.caa9456bddba5619b282.bundle.js.map",
-    "iframe.html": "/iframe.html",
-    "precache-manifest.03cba7bef7d5f25ebdec699fa1cdce40.js": "/precache-manifest.03cba7bef7d5f25ebdec699fa1cdce40.js",
-    "service-worker.js": "/service-worker.js",
-    "vendors~main.caa9456bddba5619b282.bundle.js.LICENSE.txt": "/vendors~main.caa9456bddba5619b282.bundle.js.LICENSE.txt"
+    "main.js": "/sergkulikovskyi.github.io/stuff-ui/main.caa9456bddba5619b282.bundle.js",
+    "main.js.map": "/sergkulikovskyi.github.io/stuff-ui/main.caa9456bddba5619b282.bundle.js.map",
+    "runtime~main.js": "/sergkulikovskyi.github.io/stuff-ui/runtime~main.caa9456bddba5619b282.bundle.js",
+    "runtime~main.js.map": "/sergkulikovskyi.github.io/stuff-ui/runtime~main.caa9456bddba5619b282.bundle.js.map",
+    "vendors~main.js": "/sergkulikovskyi.github.io/stuff-ui/vendors~main.caa9456bddba5619b282.bundle.js",
+    "vendors~main.js.map": "/sergkulikovskyi.github.io/stuff-ui/vendors~main.caa9456bddba5619b282.bundle.js.map",
+    "iframe.html": "/sergkulikovskyi.github.io/stuff-ui/iframe.html",
+    "precache-manifest.03cba7bef7d5f25ebdec699fa1cdce40.js": "/sergkulikovskyi.github.io/stuff-ui/precache-manifest.03cba7bef7d5f25ebdec699fa1cdce40.js",
+    "service-worker.js": "/sergkulikovskyi.github.io/stuff-ui/service-worker.js",
+    "vendors~main.caa9456bddba5619b282.bundle.js.LICENSE.txt": "/sergkulikovskyi.github.io/stuff-ui/vendors~main.caa9456bddba5619b282.bundle.js.LICENSE.txt"
   },
   "entrypoints": [
     "runtime~main.caa9456bddba5619b282.bundle.js",
