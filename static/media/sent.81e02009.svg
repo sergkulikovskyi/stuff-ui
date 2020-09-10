@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>O element / /ticket snoozed</title>
+    <g id="design-system" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="08.tickets" transform="translate(-1066.000000, -793.000000)">
+            <g id="navigation-bar" transform="translate(60.000000, 224.000000)">
+                <g id="closed" transform="translate(290.000000, 39.000000)">
+                    <g id="element-/-tickets-closed" transform="translate(670.000000, 0.000000)">
+                        <g id="snoozed" transform="translate(20.000000, 504.000000)">
+                            <g id="layout-/-ticketing-system-/-indication-/-pending" transform="translate(26.000000, 26.000000)">
+                                <circle id="Oval" fill="#3EBFCF" cx="8" cy="8" r="8"></circle>
+                                <g id="Group" stroke-width="1" transform="translate(3.000000, 4.000000)">
+                                    <path d="M7.85106871,0.492399123 L0.952806327,3.44879729 C0.698991435,3.5575751 0.58141565,3.85151456 0.690193461,4.10532945 C0.734729746,4.20924745 0.813170517,4.2950039 0.912716065,4.34860535 L3.34285714,5.65714286 L3.34285714,5.65714286 L4.65139465,8.08728394 C4.7823137,8.33041932 5.08554473,8.42138862 5.32868011,8.29046957 C5.42822566,8.23686813 5.50666643,8.15111167 5.55120271,8.04719367 L8.50760088,1.14893129 C8.61637869,0.895116396 8.4988029,0.601176934 8.24498801,0.492399123 C8.11921361,0.43849581 7.97684311,0.43849581 7.85106871,0.492399123 Z" id="Path" fill="#FFFFFF"></path>
+                                    <polygon id="Path" fill="#3EBFCF" points="8.86384536 1.7914885e-13 2.49720052 5.53203125 3.48105469 6.52623698 9 0.115899321"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

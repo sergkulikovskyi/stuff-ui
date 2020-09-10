@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>O element / /ticket snoozed</title>
+    <g id="design-system" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="08.tickets" transform="translate(-1066.000000, -691.000000)">
+            <g id="navigation-bar" transform="translate(60.000000, 224.000000)">
+                <g id="closed" transform="translate(290.000000, 39.000000)">
+                    <g id="element-/-tickets-closed" transform="translate(670.000000, 0.000000)">
+                        <g id="snoozed" transform="translate(20.000000, 402.000000)">
+                            <g id="layout-/-ticketing-system-/-indication-/-snoozed" transform="translate(26.000000, 26.000000)">
+                                <circle id="Oval" fill="#FDC468" cx="8" cy="8" r="8"></circle>
+                                <path d="M11.2352554,7.45054447 L8.55542747,7.45054447 L8.55542747,4.77782581 C8.55542747,4.34827806 8.20699096,4 7.77785783,4 C7.3484365,4 7,4.34827806 7,4.77768171 L7,8.22217419 C7,8.65172194 7.3484365,9 7.77785783,9 L11.2356877,9 C11.6574716,9 12,8.65316289 12,8.22520019 C12,7.79723749 11.6574716,7.45054447 11.2352554,7.45054447 Z" id="Shape" fill="#FFFFFF"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

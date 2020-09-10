@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6517089f.chunk.css",
+    "main.js": "/main.46749a6f3cf45d3f06e3.bundle.js",
+    "main.css.map": "/static/css/main.6517089f.chunk.css.map",
+    "main.js.map": "/main.46749a6f3cf45d3f06e3.bundle.js.map",
+    "runtime~main.js": "/runtime~main.46749a6f3cf45d3f06e3.bundle.js",
+    "runtime~main.js.map": "/runtime~main.46749a6f3cf45d3f06e3.bundle.js.map",
+    "vendors~main.js": "/vendors~main.46749a6f3cf45d3f06e3.bundle.js",
+    "vendors~main.js.map": "/vendors~main.46749a6f3cf45d3f06e3.bundle.js.map",
+    "vendors~pdfjsWorker.js": "/vendors~pdfjsWorker.46749a6f3cf45d3f06e3.bundle.js",
+    "vendors~pdfjsWorker.js.map": "/vendors~pdfjsWorker.46749a6f3cf45d3f06e3.bundle.js.map",
+    "5d18b20f0c1e1ed558e0.worker.js": "/5d18b20f0c1e1ed558e0.worker.js",
+    "5d18b20f0c1e1ed558e0.worker.js.LICENSE.txt": "/5d18b20f0c1e1ed558e0.worker.js.LICENSE.txt",
+    "5d18b20f0c1e1ed558e0.worker.js.map": "/5d18b20f0c1e1ed558e0.worker.js.map",
+    "iframe.html": "/iframe.html",
+    "precache-manifest.d509a7b450f5c20e5ef4a567a8840d86.js": "/precache-manifest.d509a7b450f5c20e5ef4a567a8840d86.js",
+    "service-worker.js": "/service-worker.js",
+    "static/media/avatar.jpg": "/static/media/avatar.8be959cb.jpg",
+    "static/media/bensound-summer.mp3": "/static/media/bensound-summer.fd79b114.mp3",
+    "static/media/file_example_MP3_700KB.mp3": "/static/media/file_example_MP3_700KB.0c481e87.mp3",
+    "static/media/qtq50-Pz24XF.jpeg": "/static/media/qtq50-Pz24XF.1a5f1db9.jpeg",
+    "static/media/sent.svg": "/static/media/sent.81e02009.svg",
+    "static/media/snoozed.svg": "/static/media/snoozed.1c3eab16.svg",
+    "vendors~main.46749a6f3cf45d3f06e3.bundle.js.LICENSE.txt": "/vendors~main.46749a6f3cf45d3f06e3.bundle.js.LICENSE.txt",
+    "vendors~pdfjsWorker.46749a6f3cf45d3f06e3.bundle.js.LICENSE.txt": "/vendors~pdfjsWorker.46749a6f3cf45d3f06e3.bundle.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "runtime~main.46749a6f3cf45d3f06e3.bundle.js",
+    "vendors~main.46749a6f3cf45d3f06e3.bundle.js",
+    "static/css/main.6517089f.chunk.css",
+    "main.46749a6f3cf45d3f06e3.bundle.js"
+  ]
+}
